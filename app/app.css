@@ -16,7 +16,7 @@
 html,
 body {
     @apply bg-background text-text;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), radial-gradient(68.88% 68.88% at 50% 31.12%, #531F14 0%, var(--color-background, #140907) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), radial-gradient(68.88% 68.88% at 50% 31.12%, #622417 0%, var(--color-background, #140907) 100%);
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;
