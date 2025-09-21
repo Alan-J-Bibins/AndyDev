@@ -2,15 +2,21 @@
 @plugin "tailwindcss-motion";
 
 @theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    --font-sans: "Alan Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-title: "Tektur", ui-sans-serif, system-ui, sans-serif,
+    --font-code: "Space Mono", ui-serif, system-ui, serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --color-text: #f3e9e6;
+    --color-background: #140907;
+    --color-primary: #e4a699;
+    --color-secondary: #892b18;
+    --color-accent: #EB8772;
 }
 
 html,
 body {
-    @apply bg-white dark:bg-gray-950;
+    @apply bg-background text-text;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), radial-gradient(68.88% 68.88% at 50% 31.12%, #531F14 0%, var(--color-background, #140907) 100%);
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;
