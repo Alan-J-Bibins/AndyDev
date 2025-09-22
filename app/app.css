@@ -10,7 +10,30 @@
     --color-background: #140907;
     --color-primary: #e4a699;
     --color-secondary: #892b18;
-    --color-accent: #EB8772;
+    --color-accent: #FC7154;
+}
+
+@layer {
+
+    .containerColors {
+        @apply bg-secondary/20 border border-primary/20 text-primary hover:border-accent hover:text-accent hover:bg-primary/20 transition-all shadow-xl hover:shadow-accent/20;
+    }
+
+    .clickable {
+        @apply flex justify-center items-center p-4 gap-2 bg-secondary/20 border border-primary/20 text-primary hover:border-accent hover:text-accent hover:bg-primary/20 transition-all shadow-xl hover:shadow-accent/20;
+    }
+
+    .messageColors1{
+        @apply bg-primary/20 border border-primary/20 p-4;
+    }
+
+    input {
+        @apply bg-primary/20 border border-primary/20 placeholder:text-primary/40 p-4;
+    }
+
+    label {
+        @apply text-xl text-primary
+    }
 }
 
 html,
