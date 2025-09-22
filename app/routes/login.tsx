@@ -1,5 +1,14 @@
-import { Form, redirect, useActionData, type ActionFunctionArgs } from "react-router"
+import { Form, redirect, useActionData, type ActionFunctionArgs, type LoaderFunctionArgs } from "react-router"
 import { serverSessionStorage } from "~/session.server";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+    const session = await serverSessionStorage.getSession(request.headers.get('Cookie'));
+    const userId = session.get('userId');
+
+    if (userId) {
+        return redirect('/project');
+    }
+};
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const formData = await request.formData();

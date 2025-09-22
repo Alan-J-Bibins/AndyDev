@@ -68,7 +68,21 @@ export default function Page() {
 
 export function FileTree({ projectName, fileTree }: { projectName: string, fileTree: any }) {
 
-    console.log("FILE TREE INFO", fileTree);
+    const { sendMessageWithResponse, connected } = useWebSocket();
+
+    useEffect(() => {
+        if (connected) {
+            console.log("WOOO")
+            sendMessageWithResponse({
+                event: "ProjectFileTreeRequest",
+                content: {
+                    projectName
+                }
+            }).then((response) => {
+                console.log('ANDI LOOK HERE ', response)
+            })
+        }
+    }, [connected])
 
     const ITEMS = [
         {
@@ -93,8 +107,8 @@ export function FileTree({ projectName, fileTree }: { projectName: string, fileT
 
 
     return (
-        <div className="bg-secondary/20 border border-primary/20 p-4 min-w-1/6">
-            <h3 className="text-primary uppercase tracking-widest text-nowrap">{projectName}</h3>
+        <div className="bg-secondary/20 border border-primary/20 p-4 overflow-hidden min-w-1/5">
+            <h3 className="text-primary uppercase tracking-widest text-nowrap truncate">{projectName}</h3>
             <div className="font-code">
                 <RichTreeView items={ITEMS} />
             </div>
@@ -111,19 +125,19 @@ export function CodeEditor() {
 }
 
 export function Terminal({ initialPrompt }: { initialPrompt: string }) {
-    const { sendMessageWithResponse } = useWebSocket();
+    const { sendMessageWithResponse, connected } = useWebSocket();
     const [messages, setMessages] = useState<string[]>([]);
 
     useEffect(() => {
-        sendMessageWithResponse({ event: "Project Create", content: { task: initialPrompt } })
+        sendMessageWithResponse({ event: "Project Create", content: { task: initialPrompt, projectName: "Zephyr" } })
             .then((response) => {
-                console.log("Response from Project Create:", response.data);
+                console.log("RESPONSE OBJ", response)
                 setMessages(prev => [...prev, response.data])
             })
             .catch((error) => {
                 console.error("WebSocket request failed:", error);
             });
-    }, [])
+    }, [connected])
 
 
     return (
@@ -166,6 +180,18 @@ export function ChatWithNived({ initialPrompt }: { initialPrompt: string }) {
     );
 }
 export function SubagentStatus() {
+    const { connected, sendMessageWithResponse } = useWebSocket();
+
+    useEffect(() => {
+        if (connected) {
+            sendMessageWithResponse({
+                event: "TestCase",
+                content: {}
+            }).then((response) => {
+                console.log("ANOTHER ONEE ", response)
+            })
+        }
+    }, [connected])
     return (
         <div className="bg-secondary/20 border border-primary/20 p-4 w-full h-full">
             <h3 className="text-primary uppercase tracking-widest text-nowrap">SUBAGENT STATUS</h3>
