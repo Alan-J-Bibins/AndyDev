@@ -24,10 +24,16 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Layout() {
     const { user } = useLoaderData<typeof loader>();
     return (
-        <WebSocketProvider userId={user.id}>
-            <Header />
-            <Outlet />
-        </WebSocketProvider>
+        <div className="h-screen w-screen">
+            <WebSocketProvider userId={user.id}>
+                <div className="flex flex-col gap-0 w-full h-full">
+                    <Header />
+                    <div className="w-full h-full overflow-auto p-4 flex-grow">
+                        <Outlet />
+                    </div>
+                </div>
+            </WebSocketProvider>
+        </div>
     )
 }
 

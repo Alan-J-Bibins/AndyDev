@@ -31,12 +31,12 @@ export default function Page() {
         const initialPrompt = String(formData.get('initialPrompt'));
 
         if (projectName) {
-            navigate(`/project/${projectName}?initialPrompt=${initialPrompt}`);
+            navigate(`/project/${projectName}`, { state: { initialPrompt } });
         }
     };
 
     return (
-        <main className="h-screen flex flex-col justify-start items-start gap-4 p-8">
+        <main className="h-full flex flex-col justify-start items-start gap-4 p-4">
             <div className="w-full flex justify-between items-center">
                 <h1 className="text-4xl text-primary">Recent Projects</h1>
                 <div className="flex justify-center items-center w-fit gap-4">
@@ -126,7 +126,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 <EllipsisVertical size={24} className="group-hover:opacity-100 opacity-0 transition-opacity" />
             </div>
             <div className="flex justify-between items-center w-full">
-                <h3 className="text-2xl">
+                <h3 className="text-2xl truncate">
                     {project.name}
                 </h3>
                 <ChevronRight size={24} className="group-hover:translate-x-1 transition-all" />
